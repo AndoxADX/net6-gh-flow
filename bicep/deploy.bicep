@@ -61,3 +61,4 @@ module cosmos './cosmos.bicep'= if(!empty(deployment.cosmosDb)){
 }
 
 output appName string = webapp.outputs.appName
+output rgName string = rgName

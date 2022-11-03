@@ -4,3 +4,6 @@
 <!-- https://www.cloudninja.nu/post/2021/06/getting-started-with-github-actions-and-bicep-part-2/ -->
 
 az deployment sub what-if -n dev -f bicep\deploy.bicep --parameters bicep\deploy.parameters.json
+
+# Refer for step: deploy  
+<!-- https://github.com/Azure/arm-deploy -->
