@@ -91,9 +91,9 @@ jobs:
           # Get rgName
           # echo ${{ steps.deploy.outputs.rgName }}
           $rgName = "${{ steps.deploy.outputs.rgName }}"
-          # Get full outputs
-          $output = "${{ steps.deploy.outputs }}" | ConvertFrom-Json
-          echo $output
+          # # Get full outputs
+          # $output = "${{ steps.deploy.outputs }}" | ConvertFrom-Json
+          # echo $output
 
           # Get publish profiles
           $profiles = az webapp deployment list-publishing-profiles `
