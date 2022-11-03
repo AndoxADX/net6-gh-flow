@@ -5,11 +5,9 @@
       "template": "./deploy.bicep"
     },
     "parameters": {
-      
       "location": {
         "value": "southeastasia"
       },
-
       "env": {
         "value": "dev"
       },

@@ -72,7 +72,7 @@ jobs:
           scope: subscription
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           # resourceGroupName: MyVeryBestResourceGroup
-          region: southeastsia
+          region: southeastasia
           template: infra/deploy.bicep
           parameters: infra/deploy.parameters.json
           # path: infra
