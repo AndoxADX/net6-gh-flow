@@ -37,6 +37,7 @@ module webapp './webapp.bicep' = {
     webappName : '${deployment.webapp.appName}-${env}'
     skuName: deployment.webapp.skuName
     skuTier: deployment.webapp.skuTier
+    staticSiteslocation: deployment.webapp.staticSiteslocation
   }
 }
 

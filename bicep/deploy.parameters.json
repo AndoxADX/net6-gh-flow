@@ -45,7 +45,8 @@
           "webapp":{
             "appName": "nov3-demo-web",
             "skuName": "F1",
-            "skuTier": "F1"
+            "skuTier": "Free",
+            "staticSiteslocation": "eastasia"
           }
         }
       }
