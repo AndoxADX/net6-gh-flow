@@ -82,7 +82,7 @@ jobs:
           # Unexpected input(s) 'path', valid inputs are ['scope', 'subscriptionId', 'managementGroupId', 'region', 'resourceGroupName', 'template', 'deploymentMode', 'deploymentName', 'parameters', 'failOnStdErr', 'additionalArguments']
       
       - name: Get AppName
-      - run: |
+        run: |
           # Get appName
           echo ${{ steps.deploy.outputs.appName }}
           $appName = ${{ steps.deploy.outputs.appName}}
