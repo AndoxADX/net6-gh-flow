@@ -14,7 +14,6 @@
       "deployment": {
         "value": {
           "projectName": "Nov3-demo",
-          "appName": "Nov3-demo-web",
           "resourceGroupName": "bicep-rg",
           "MIInfo": [],
           "publicIp": [],
@@ -44,6 +43,7 @@
             ]
           },
           "webapp":{
+            "appName": "nov3-demo-web",
             "skuName": "F1",
             "skuTier": "F1"
           }
