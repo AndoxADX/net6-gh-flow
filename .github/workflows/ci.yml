@@ -72,10 +72,10 @@ jobs:
           scope: subscription
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           # resourceGroupName: MyVeryBestResourceGroup
+          region: ${{ secrets.AZURE_RESROURCE_GROUP_REGION }}
           template: deploy.bicep
           parameters: deploy.parameters.json
           path: infra
-          region: ${{ secrets.AZURE_RESROURCE_GROUP_REGION }}
           
       # - name: Deploy infrastructure
       #   id: azure-deployment
