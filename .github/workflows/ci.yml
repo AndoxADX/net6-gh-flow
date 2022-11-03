@@ -86,14 +86,12 @@ jobs:
         shell: pwsh
         run: |
           # Get appName
-          # echo ${{ steps.deploy.outputs.appName }}
-          $appName = "${{ steps.deploy.outputs.appName}}"
+          # echo ${{ steps.azure-deployment-bicep.outputs.appName }}
+          $appName = "${{ steps.azure-deployment-bicep.outputs.appName}}"
+
           # Get rgName
-          # echo ${{ steps.deploy.outputs.rgName }}
-          $rgName = "${{ steps.deploy.outputs.rgName }}"
-          # # Get full outputs
-          # $output = "${{ steps.deploy.outputs }}" | ConvertFrom-Json
-          # echo $output
+          # echo ${{ steps.azure-deployment-bicep.outputs.rgName }}
+          $rgName = "${{ steps.azure-deployment-bicep.outputs.rgName }}"
 
           # Get publish profiles
           $profiles = az webapp deployment list-publishing-profiles `
