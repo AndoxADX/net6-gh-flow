@@ -72,11 +72,12 @@ jobs:
           scope: subscription
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           # resourceGroupName: MyVeryBestResourceGroup
-          region: ${{ secrets.AZURE_RESROURCE_GROUP_REGION }}
+          region: southeastsia
           template: deploy.bicep
           parameters: deploy.parameters.json
           path: infra
-          
+          # Unexpected input(s) 'path', valid inputs are ['scope', 'subscriptionId', 'managementGroupId', 'region', 'resourceGroupName', 'template', 'deploymentMode', 'deploymentName', 'parameters', 'failOnStdErr', 'additionalArguments']
+      
       # - name: Deploy infrastructure
       #   id: azure-deployment
       #   shell: pwsh
