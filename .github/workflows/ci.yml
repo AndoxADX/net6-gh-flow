@@ -80,27 +80,25 @@ jobs:
           # failOnStdErr: false
           # path: infra
           # Unexpected input(s) 'path', valid inputs are ['scope', 'subscriptionId', 'managementGroupId', 'region', 'resourceGroupName', 'template', 'deploymentMode', 'deploymentName', 'parameters', 'failOnStdErr', 'additionalArguments']
-      
-      - name: Get Bicep results
-        shell: pwsh
-        run: |
-          # Get appName
-          echo ${{ steps.deploy.outputs.appName }}
-          $appName = "${{ steps.deploy.outputs.appName}}"
-          # Get rgName
-          echo ${{ steps.deploy.outputs.rgName }}
-          $rgName = "${{ steps.deploy.outputs.rgName }}"
-          # Get full outputs
-          echo ${{ steps.deploy.outputs }}
 
       - name: Get publish profiles
         id: azure-deployment-result
         shell: pwsh
         run: |
+          # Get appName
+          # echo ${{ steps.deploy.outputs.appName }}
+          $appName = "${{ steps.deploy.outputs.appName}}"
+          # Get rgName
+          # echo ${{ steps.deploy.outputs.rgName }}
+          $rgName = "${{ steps.deploy.outputs.rgName }}"
+          # Get full outputs
+          $output = "${{ steps.deploy.outputs }}" | ConvertFrom-Json
+          echo $output
+
           # Get publish profiles
           $profiles = az webapp deployment list-publishing-profiles `
-            -g ${{ steps.deploy.outputs.rgName }} `
-            -n ${{ steps.deploy.outputs.appName }} --xml
+            -g $rgName `
+            -n $appName --xml
           # Set all the outputs
           "appName=$appName" >> $env:GITHUB_OUTPUT
           "publishProfiles=$profiles" >> $env:GITHUB_OUTPUT
