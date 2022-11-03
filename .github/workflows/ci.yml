@@ -99,7 +99,7 @@ jobs:
         run: |
           # Get publish profiles
           $profiles = az webapp deployment list-publishing-profiles `
-            -g ${{ steps.deploy.outputs.appName }} `
+            -g ${{ steps.deploy.outputs.rgName }} `
             -n ${{ steps.deploy.outputs.appName }} --xml
           # Set all the outputs
           "appName=$appName" >> $env:GITHUB_OUTPUT
