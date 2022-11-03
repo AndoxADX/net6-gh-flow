@@ -16,11 +16,12 @@ param deployment object
   'prd'
 ])
 param env string = deployment.env
-
-var locationCodes = json(loadTextContent('~/../../../Global/location-codes.json'))
-var rgEnvironments =json(loadTextContent('~/../../../Global/resourceGroup-environments.json'))
+// param locationCodes object
+// param rgEnvironments object
+var locationCodes = json(loadTextContent('location-codes.json'))
+var rgEnvironments =json(loadTextContent('resourceGroup-environments.json'))
 var locationCode = locationCodes[location]
-var rgName = toUpper('RG-${locationCode}-${rgEnvironments[env]}-${deployment.resourceGroupName}')
+var rgName = toUpper('RG-${locationCode}-${rgEnvironments[env]}-${deployment.projectName}')
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: rgName
@@ -34,6 +35,8 @@ module webapp './webapp.bicep' = {
   params: {
     location: location
     webappName : '${deployment.appName}-${env}'
+    skuName: deployment.skuName
+    skuTier: deployment.skuTier
   }
 }
 

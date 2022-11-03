@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "metadata": {
+      "template": "./deploy.bicep"
+    },
+    "parameters": {
+      
+      "location": {
+        "value": "southeastasia"
+      },
+
+      "env": {
+        "value": "dev"
+      },
+      "deployment": {
+        "value": {
+          "projectName": "Nov3-demo",
+          "appName": "Nov3-demo-web",
+          "resourceGroupName": "bicep-rg",
+          "MIInfo": [],
+          "publicIp": [],
+          "b2c": {},
+          "ips": ["60.50.26.28"],
+          "staticWebsite": [],
+          "vnet": [],
+          "certPassword": {},
+          "planInfo": [
+            {
+              "name": "Nov3-users"
+            }
+          ],
+          "cosmosDb": {
+            "name": "Nov3-db", 
+            "keyvaultName": "Nov3-db",
+            "dbName": "db_Nov3",
+            "containers": [
+              {
+                "name": "geoData",
+                "partitionKey": "partitionKey"
+              },
+              {
+                "name": "contractData",
+                "partitionKey": "partitionKey"
+              }
+            ]
+          },
+          "webapp":{
+            "skuName": "F1",
+            "skuTier": "F1"
+          }
+        }
+      }
+    }
+  }

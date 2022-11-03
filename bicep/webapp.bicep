@@ -1,5 +1,7 @@
 param location string
 param webappName string
+param skuName string
+param skuTier string
 
 resource hostingPlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: toLower('hplan-${webappName}')
@@ -8,7 +10,8 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2021-03-01' = {
     reserved: true
   }
   sku: {
-    name: 'B1'
+    name: skuName
+    tier: skuTier
   }
   kind: 'linux'
 }
