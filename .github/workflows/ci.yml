@@ -73,8 +73,8 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           # resourceGroupName: MyVeryBestResourceGroup
           region: southeastsia
-          template: deploy.bicep
-          parameters: deploy.parameters.json
+          template: bicep/deploy.bicep
+          parameters: bicep/deploy.parameters.json
           path: infra
           # Unexpected input(s) 'path', valid inputs are ['scope', 'subscriptionId', 'managementGroupId', 'region', 'resourceGroupName', 'template', 'deploymentMode', 'deploymentName', 'parameters', 'failOnStdErr', 'additionalArguments']
       
