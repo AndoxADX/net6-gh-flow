@@ -58,7 +58,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: infra
-          path: infra
+          path: infra 
+          # Artifact infra was downloaded to /home/runner/work/net6-gh-flow/net6-gh-flow/infra
 
       - name: Login to Azure CLI
         uses: azure/login@v1
@@ -72,7 +73,7 @@ jobs:
           $rgName = '${{ env.RG_NAME }}-dev'
           $deployment = $(az deployment sub create --name $rgName `
             --location ${{ env.LOCATION }} `
-            --template-file main.bicep `
+            --template-file deploy.bicep `
             --parameters location=${{ env.LOCATION }} `
             --parameters rgName=$rgName `
             --output json) | ConvertFrom-Json
