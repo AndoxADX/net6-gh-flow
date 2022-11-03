@@ -81,7 +81,8 @@ jobs:
           # path: infra
           # Unexpected input(s) 'path', valid inputs are ['scope', 'subscriptionId', 'managementGroupId', 'region', 'resourceGroupName', 'template', 'deploymentMode', 'deploymentName', 'parameters', 'failOnStdErr', 'additionalArguments']
       
-      - name: Get AppName
+      - name: Get Bicep results
+        shell: pwsh
         run: |
           # Get appName
           echo ${{ steps.deploy.outputs.appName }}
@@ -89,8 +90,10 @@ jobs:
           # Get rgName
           echo ${{ steps.deploy.outputs.rgName }}
           $rgName = ${{ steps.deploy.outputs.rgName}}
+          # Get full outputs
+          echo ${{ steps.deploy.outputs }}
 
-      - name: Deploy infrastructure
+      - name: Get publish profiles
         id: azure-deployment-result
         shell: pwsh
         run: |
@@ -124,28 +127,28 @@ jobs:
       #     "publishProfiles=$profiles" >> $env:GITHUB_OUTPUT
       #   working-directory: ./infra/
 
-  # deployDevApp:
-  #   needs: deployDevInfrastructure
-  #   name: deploy dev application
-  #   runs-on: ubuntu-latest
+  deployDevApp:
+    needs: deployDevInfrastructure
+    name: deploy dev application
+    runs-on: ubuntu-latest
     
-  #   steps:
-  #     - name: Download app
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: app
-  #         path: app
+    steps:
+      - name: Download app
+        uses: actions/download-artifact@v3
+        with:
+          name: app
+          path: app
 
-  #     - name: Login to Azure CLI
-  #       uses: azure/login@v1
-  #       with:
-  #         creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Login to Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-  #     - name: Deploy to Azure Web App
-  #       id: deploy-to-webapp
-  #       uses: azure/webapps-deploy@v2
-  #       with:
-  #         app-name: '${{ needs.deployDevInfrastructure.outputs.appName }}'
-  #         slot-name: 'Production'
-  #         publish-profile: ${{ needs.deployDevInfrastructure.outputs.publishProfiles }}
-  #         package: ./app
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: '${{ needs.deployDevInfrastructure.outputs.appName }}'
+          slot-name: 'Production'
+          publish-profile: ${{ needs.deployDevInfrastructure.outputs.publishProfiles }}
+          package: ./app
