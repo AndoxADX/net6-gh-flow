@@ -28,8 +28,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Publish app
-        run: cd myapp 
-            dotnet publish --configuration Release /property:GenerateFullPaths=true
+        run: |
+          cd myapp 
+          dotnet publish --configuration Release /property:GenerateFullPaths=true
 
       - name: Publish app artifact
         uses: actions/upload-artifact@v3
