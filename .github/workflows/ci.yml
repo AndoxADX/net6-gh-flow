@@ -86,10 +86,10 @@ jobs:
         run: |
           # Get appName
           echo ${{ steps.deploy.outputs.appName }}
-          $appName = ${{ steps.deploy.outputs.appName}}
+          $appName = "${{ steps.deploy.outputs.appName}}"
           # Get rgName
           echo ${{ steps.deploy.outputs.rgName }}
-          $rgName = ${{ steps.deploy.outputs.rgName}}
+          $rgName = "${{ steps.deploy.outputs.rgName }}"
           # Get full outputs
           echo ${{ steps.deploy.outputs }}
 
@@ -99,8 +99,8 @@ jobs:
         run: |
           # Get publish profiles
           $profiles = az webapp deployment list-publishing-profiles `
-            -g $rgName `
-            -n $appName --xml
+            -g ${{ steps.deploy.outputs.appName }} `
+            -n ${{ steps.deploy.outputs.appName }} --xml
           # Set all the outputs
           "appName=$appName" >> $env:GITHUB_OUTPUT
           "publishProfiles=$profiles" >> $env:GITHUB_OUTPUT
