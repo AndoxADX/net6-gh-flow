@@ -19,6 +19,7 @@ Deployment.md
 azurecreds.json
 
 .deployment
+/deployment
 
 # Mono auto generated files
 mono_crash.*
