@@ -4,6 +4,8 @@ param webappName string
 param skuName string
 param skuTier string
 
+// var isReserved = (functionPlanOS == 'Linux') ? true : false
+
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: toLower('hplan-${webappName}')
   location: location

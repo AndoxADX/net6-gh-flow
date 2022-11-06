@@ -60,5 +60,20 @@ module cosmos './cosmos.bicep'= if(!empty(deployment.cosmosDb)){
   // ]
 }
 
+// @description('Deploy Virtual Private Networks')
+// module vnet './vnet.bicep' = [for vnet in deployment.vnet: {
+//   scope: resourceGroup(rgName)
+//   name: 'dp-vnet-${vnet.name}'
+//   params: {
+//     name: vnet.name
+//     subnets: vnet.subnets
+//     env: env
+//     vnetAddressPrefixes: vnet.vnetAddressPrefixes
+//     locationCodes: locationCodes
+//     location: location
+//     networkSecurityGroup: vnet.networkSecurityGroup
+//   }
+// }]
+
 output appName string = webapp.outputs.appName
 output rgName string = rgName

@@ -47,7 +47,59 @@
             "skuName": "F1",
             "skuTier": "Free",
             "staticSiteslocation": "eastasia"
-          }
+          },
+          "vnet": [
+            {
+              "name": "newbhi",
+              "vnetAddressPrefixes": [
+                "10.170.192.0/18"
+              ],
+              "networkSecurityGroup": "nsg-{{locationCode}}-{{env}}-weballow-001",
+              "subnets": [
+                {
+                  "name": "agw",
+                  "ipAddressRange": "10.170.192.0/24",
+                  "PrivateEndpointNetworkPolicies": "Disabled",
+                  "privateLinkServiceNetworkPolicies": "Enabled",
+                  "serviceEndpoints": [
+                    {
+                      "service": "Microsoft.Storage",
+                      "locations": [
+                        "australiaeast",
+                        "australiasoutheast"
+                      ]
+                    }
+                  ],
+                  "delegations": []
+                },
+                {
+                  "name": "apim",
+                  "ipAddressRange": "10.170.193.0/24",
+                  "PrivateEndpointNetworkPolicies": "Disabled",
+                  "privateLinkServiceNetworkPolicies": "Enabled",
+                  "serviceEndpoints": [],
+                  "delegations": []
+                },
+                {
+                  "name": "functions",
+                  "ipAddressRange": "10.170.194.0/24",
+                  "PrivateEndpointNetworkPolicies": "Disabled",
+                  "privateLinkServiceNetworkPolicies": "Enabled",
+                  "serviceEndpoints": [],
+                  "delegations": [
+                    {
+                      "name": "Microsoft.Web.serverFarms",
+                      "properties": {
+                        "serviceName": "Microsoft.Web/serverFarms"
+                      },
+                      "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                    }
+                    
+                  ]
+                }
+              ]
+            }
+          ]
         }
       }
     }
